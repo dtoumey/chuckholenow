@@ -10,13 +10,45 @@
 
 <script>
 debugger;
-$.get("https://communities.socrata.com/resource/8f5a-5xkb.json?keyword=Chuckhole&$limit=5", function(data){
-	var test = data[0].trash_haul;
-	$("#txtDepartment").val(test);
+$.get("https://communities.socrata.com/resource/8f5a-5xkb.json?created_by=SADMIN&$limit=30", function(data){
+
+	for(var i = 0; i < data.length; i++){
+		var arr = [data[i].trash_haul, data[i].department, data[i].callbacks, data[i].council_di];
+			// var test = data[i].trash_haul;
+			// var test1 = data[i].department;
+			// var test2 = data[i].callbacks;
+			// var test3 = data[i].council_di;
+			var container = $('#test');
+			
+			$('<input/>',{
+				id: "txtDepartment" + i,
+				name: "txtDepartment" + i
+			}).val(arr[0]).appendTo(container);
+			$('<input/>',{
+				id: "txtDepartment" + i,
+				name: "txtDepartment" + i
+			}).val(arr[1]).appendTo(container);
+			$('<input/>',{
+				id: "txtDepartment" + i,
+				name: "txtDepartment" + i
+			}).val(arr[2]).appendTo(container);
+			$('<input/>',{
+				id: "txtDepartment" + i,
+				name: "txtDepartment" + i
+			}).val(arr[3]).appendTo(container);
+			
+
+			// $('#test').appendTo(container);
+			$('<br/>').appendTo(container);
+	}
+
 });
 </script>
-<label for="txtDepartment">Department:</label>
-<input type="textbox" name="txtDepartment" id="txtDepartment" value="">
+
+<div id="test">
+
+</div>
+
 
 
 <a href="https://communities.socrata.com/resource/8f5a-5xkb.json?keyword=Chuckhole&$limit=5">Click</a>
