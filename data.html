@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!--Grab the dataset-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	
+</head>
+
+<body>
+
+<script>
+debugger;
+$.get("https://communities.socrata.com/resource/8f5a-5xkb.json?keyword=Chuckhole&$limit=5", function(data){
+	var test = data[0].trash_haul;
+	$("#txtDepartment").val(test);
+});
+</script>
+<label for="txtDepartment">Department:</label>
+<input type="textbox" name="txtDepartment" id="txtDepartment" value="">
+
+
+<a href="https://communities.socrata.com/resource/8f5a-5xkb.json?keyword=Chuckhole&$limit=5">Click</a>
+
+</body>
+
+</html>
