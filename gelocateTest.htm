@@ -1,0 +1,83 @@
+<script src="http://www.google.com/jsapi?key=ABQIAAAAlJFc1lrstqhgTl3ZYo38bBQcfCcww1WgMTxEFsdaTsnOXOVOUhTplLhHcmgnaY0u87hQyd-n-kiOqQ"></script>
+02.
+<script>
+03.
+(function () {
+04.
+google.load("maps", "2");
+05.
+google.setOnLoadCallback(function () {
+06.
+// Create map
+07.
+var map = new google.maps.Map2(document.getElementById("map")),
+08.
+markerText = "<h2>You are here</h2><p>Nice with geolocation, ain't it?</p>",
+09.
+markOutLocation = function (lat, long) {
+10.
+var latLong = new google.maps.LatLng(lat, long),
+11.
+marker = new google.maps.Marker(latLong);
+12.
+map.setCenter(latLong, 13);
+13.
+map.addOverlay(marker);
+14.
+marker.openInfoWindow(markerText);
+15.
+google.maps.Event.addListener(marker, "click", function () {
+16.
+marker.openInfoWindow(markerText);
+17.
+});
+18.
+};
+19.
+map.setUIToDefault();
+20.
+ 
+21.
+// Check for geolocation support   
+22.
+if (navigator.geolocation) {
+23.
+// Get current position
+24.
+navigator.geolocation.getCurrentPosition(function (position) {
+25.
+// Success!
+26.
+markOutLocation(position.coords.latitude, position.coords.longitude);
+27.
+},
+28.
+function () {
+29.
+// Gelocation fallback: Defaults to Stockholm, Sweden
+30.
+markerText = "<p>Please accept geolocation for me to be able to find you. <br>I've put you in Stockholm for now.</p>";
+31.
+markOutLocation(59.3325215, 18.0643818);
+32.
+}
+33.
+);
+34.
+}
+35.
+else {
+36.
+// No geolocation fallback: Defaults to Eeaster Island, Chile
+37.
+markerText = "<p>No location support. Try Easter Island for now. :-)</p>";
+38.
+markOutLocation(-27.121192, -109.366424);
+39.
+}
+40.
+});
+41.
+})();
+42.
+</script>
