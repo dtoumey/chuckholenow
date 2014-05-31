@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="websitecss.css"
 	<!--Grab the dataset-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	
@@ -9,51 +8,39 @@
 
 <body>
 
-
 <script>
 debugger;
 $.get("https://communities.socrata.com/resource/8f5a-5xkb.json?created_by=SADMIN&$limit=30", function(data){
 
-$('#test').append("Data submitted by: " + data[0].created_by + "<br/>");
-
 	for(var i = 0; i < data.length; i++){
-		var arr = { Department: data[i].trash_haul, 
-					Callbacks: data[i].callbacks, 
-					District: data[i].council_di,
-					Intersection: data[i].intersection,
-					Address: data[i].incident_address,
-					SubLocation: data[i].sub_category,
-					Source: data[i].source};
+		var arr = [data[i].trash_haul, data[i].department, data[i].callbacks, data[i].council_di];
 			// var test = data[i].trash_haul;
 			// var test1 = data[i].department;
 			// var test2 = data[i].callbacks;
 			// var test3 = data[i].council_di;
 			var container = $('#test');
 			
-			for (var name in arr) {
-				$('<label/>',{
-					for: name + i
-				}).html(name + ": ").appendTo(container);
-
-				$('<input/>',{
-					id: name + i,
-					name: name + i
-				}).val(arr[name]).appendTo(container);
-			}
+			$('<input/>',{
+				id: "txtDepartment" + i,
+				name: "txtDepartment" + i
+			}).val(arr[0]).appendTo(container);
+			$('<input/>',{
+				id: "txtDepartment" + i,
+				name: "txtDepartment" + i
+			}).val(arr[1]).appendTo(container);
+			$('<input/>',{
+				id: "txtDepartment" + i,
+				name: "txtDepartment" + i
+			}).val(arr[2]).appendTo(container);
+			$('<input/>',{
+				id: "txtDepartment" + i,
+				name: "txtDepartment" + i
+			}).val(arr[3]).appendTo(container);
+			
 
 			// $('#test').appendTo(container);
 			$('<br/>').appendTo(container);
 	}
-	$(document).ready(function(){
-		$("input[id^=Callbacks").each(function(idx, val){
-			$(val).addClass("CallbackField");
-		});
-		$("input[id^=District").each(function(idx, val){
-			$(val).addClass("DistrictField");
-		});
-	})
-
-
 
 });
 </script>
