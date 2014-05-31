@@ -15,3 +15,9 @@ Public Data
 ============
 
 We will integrate public data already collected and provided by Socrata into our web/mobile app.
+
+
+MOLE POINTS!
+============
+
+Create a fun point system that will affect users rank and earn badges, making them want to continue to submit pothole locations
