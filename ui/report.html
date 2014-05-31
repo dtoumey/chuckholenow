@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="style.css" type="text/css" />
 
     <!-- javascripts -->
+    <script src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+    <script type='text/javascript' src='https://cdn.firebase.com/js/simple-login/1.4.1/firebase-simple-login.js'></script>
     <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
 </head>
@@ -71,11 +74,22 @@
                         // console.log(arguments);
                     }
 
-                    if (navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition(success, error);
-                    } else {
-                        error('not supported');
-                    }
+                    var myDataRef = new Firebase('https://torid-fire-5021.firebaseio.com/');
+                    var auth = new FirebaseSimpleLogin(myDataRef, function(error, user) {
+                        if (error) {
+                          // an error occurred while attempting login
+                          alert(error);
+                        } else if (user) {
+                            // user authenticated with Firebase
+                            if (navigator.geolocation) {
+                                navigator.geolocation.getCurrentPosition(success, error);
+                            } else {
+                                error('not supported');
+                            }
+                        } else {
+                          window.location = "login.html";
+                        }
+                    });
                     </script>
                     <button class="button">
                         <span>Submit</span>

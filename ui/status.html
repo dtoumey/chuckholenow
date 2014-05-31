@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="style.css" type="text/css" />
 
     <!-- javascripts -->
+    <script src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+    <script type='text/javascript' src='https://cdn.firebase.com/js/simple-login/1.4.1/firebase-simple-login.js'></script>
     <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
 </head>
@@ -19,19 +22,31 @@
             <section id="introp" class="cf">
                 <div class="grid-full">
                     <h1 class="heading">Pot Hole Mole</h1>
-                    <span> <a class="showMeOpen">View Open Pot Holes</a></span>
-                    <div id="openCases" style="display:none;">
-                    </div>
-                    <br/>
-                    <span><a class="showMeClosed">View Closed Pot Holes</a></span>
-                    <div id="closedCases" style="display:none;">
-                    </div>
-                    
+                    <span>View Open Pot Holes</span>
+                    <span>View Closed Pot Holes</span>
+                    <button class="button">
+                        <span>Submit</span>
+                    </button>
                 </div>
+                <!--check status on view page  in the future-->
+
             </section>
 
         </div>
     </section>
+    <script>
+      var myDataRef = new Firebase('https://torid-fire-5021.firebaseio.com/');
+      var auth = new FirebaseSimpleLogin(myDataRef, function(error, user) {
+        if (error) {
+          // an error occurred while attempting login
+          alert(error);
+        } else if (user) {
+          // user authenticated with Firebase
+        } else {
+          window.location = "login.html";
+        }
+      });
+    </script>
 </body>
 
 </html>
